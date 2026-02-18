@@ -1,3 +1,30 @@
+// Initialize Swiper للعرض الأفقي
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.horizontalSwiper')) {
+        new Swiper('.horizontalSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            grabCursor: false,
+            speed: 600,
+            effect: 'slide',
+        });
+    }
+});
+
 // Initialize AOS
 AOS.init({
     duration: 800,
@@ -47,12 +74,12 @@ document.querySelectorAll('.nav-link').forEach(link => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(3, 3, 5, 0.95)';
-        navbar.style.backdropFilter = 'blur(10px)';
-        navbar.style.borderBottom = '1px solid rgba(0, 255, 136, 0.1)';
+        navbar.style.background = 'rgba(10, 10, 10, 0.9)';
+        navbar.style.backdropFilter = 'blur(12px)';
+        navbar.style.borderBottom = '1px solid rgba(59, 130, 246, 0.2)';
     } else {
-        navbar.style.background = 'rgba(3, 3, 5, 0.8)';
-        navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.05)';
+        navbar.style.background = 'rgba(10, 10, 10, 0.7)';
+        navbar.style.borderBottom = '1px solid rgba(59, 130, 246, 0.1)';
     }
 });
 
@@ -93,22 +120,4 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
-
-// Add animation to cards on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.service-card, .expertise-card, .distinction-card').forEach(card => {
-    observer.observe(card);
 });
